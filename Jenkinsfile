@@ -1,4 +1,4 @@
-// This pipeline is Jenkins_Server with t2.micro
+// This file is jenkins-server qith t3a.medium
 pipeline {
     agent any
     tools {
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Github Checkout') {
             steps {
-                git credentialsId: '1aaac3f8-686d-42f6-8e11-6712f09c3d4a', url: 'https://github.com/msaidcevik/tf-jenkins-demo.git'
+                git credentialsId: 'a5045a26-3ca3-4568-918c-2a68698cdb32', url: 'https://github.com/msaidcevik/tf-jenkins-demo.git'
             }
         }
         
