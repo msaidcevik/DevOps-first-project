@@ -1,4 +1,3 @@
-// This file is jenkins-server qith t3a.medium
 pipeline {
     agent any
     tools {
@@ -12,7 +11,7 @@ pipeline {
     stages {
         stage('Github Checkout') {
             steps {
-                git credentialsId: 'a5045a26-3ca3-4568-918c-2a68698cdb32', url: 'https://github.com/msaidcevik/tf-jenkins-demo.git'
+                git credentialsId: 'e95b7ccf-d390-4c42-849a-a04396103202', url: 'https://github.com/msaidcevik/DevOps-first-project.git'
             }
         }
         
@@ -26,8 +25,8 @@ pipeline {
         stage('Push Image to DockerHub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhub-pwd')]) {
-                        sh 'docker login -u said23 -p ${dockerhub-pwd}'
+                    withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker')]) {
+                        sh 'docker login -u said23 -p ${docker}'
                         sh 'docker push said23/roman-app:1.0'
                     }
                 }
@@ -64,7 +63,7 @@ pipeline {
                 }
                 sh 'echo ${SERVER_IP}'
                 
-                sshagent(['firstkey1']) {
+                sshagent(['ec2-firstkey']) {
                     sh 'ssh -o StrictHostKeyChecking=no -l ubuntu ${SERVER_IP} docker pull said23/roman-app:1.0'
                     sh 'ssh -o StrictHostKeyChecking=no -l ubuntu ${SERVER_IP} docker run -d --name roman -p 80:80 said23/roman-app:1.0'
                 } 
