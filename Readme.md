@@ -1,4 +1,10 @@
 # The application is deployed in a container on AWS EC2 with Terraform and Jenkins manages this process.
+- Create Docker image and push the image DockerHub
+- Create EC2-instance and install docker into EC2 with using EC2
+- Pull the Docker image in EC2 from DockerHub and run.
+- Manage with Jenkins pipeline the above steps.
+
+![project-diagram](./project-02.png)
 
 ## Create and configure Jenkins Server
 ```txt
